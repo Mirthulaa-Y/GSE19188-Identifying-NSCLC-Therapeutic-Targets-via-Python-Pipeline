@@ -1,148 +1,100 @@
-NSCLC Differential Expression Analysis (GSE19188)
+Gene-Level Differential Expression Analysis of NSCLC (GSE19188)
 
-A reproducible Python pipeline to download, preprocess, and analyze the GSE19188 gene expression dataset from GEO, identifying tumor and normal differential expression signatures in early-stage NSCLC.
+This repository contains a Python-based bioinformatics workflow for gene-level differential expression and pathway analysis of non-small cell lung cancer (NSCLC) using the public GEO microarray dataset GSE19188.
 
-📌 What This Project Does
+The project focuses on identifying transcriptomic differences between NSCLC tumor samples and normal lung tissues through statistically rigorous analysis and biological interpretation.
 
-This pipeline performs:
+📌 Background
 
-Automatic download of the GSE19188 dataset directly from NCBI GEO
+Non-small cell lung cancer accounts for the majority of lung cancer cases and is characterized by extensive molecular heterogeneity. Transcriptomic profiling enables systematic identification of genes and pathways associated with tumor development and progression.
 
-Cleaning & preprocessing of the expression matrix
+Public repositories such as the NCBI Gene Expression Omnibus (GEO) provide access to large-scale expression datasets that can be reanalyzed to extract biologically meaningful insights using reproducible computational workflows.
 
-Filtering low-variance probes
+🎯 Objectives
 
-Log₂ transformation
+Perform gene-level differential expression analysis between NSCLC tumor and normal lung tissues
 
-Sample classification into tumor and normal groups using GEO metadata
+Identify significantly upregulated and downregulated genes with false discovery rate (FDR) correction
 
-Differential expression analysis using Welch’s t-test
+Explore global transcriptomic patterns using dimensionality reduction and clustering
 
-Generation of intuitive visualizations, including:
+Interpret results through functional pathway enrichment analysis
 
-Volcano plot
-
-Heatmap (Top 50 DEGs)
-
-PCA plot
-
-MA plot
-
-This project is designed to be easy to read, easy to run, and easy to extend, especially for students learning transcriptomics or bioinformatics.
-
-🧬 Dataset Information
-
-Dataset: GSE19188
-
-Condition: Early-stage NSCLC with matched normal lung tissue
+🧪 Dataset
 
 Source: NCBI Gene Expression Omnibus (GEO)
 
-Storage: Data are downloaded automatically when you run the notebook (no need to store raw files in the repo).
+Accession: GSE19188
 
-📁 Project Layout
-├── notebooks/                     # Main end-to-end analysis notebook
-│   └── GSE19188_NSCLC_DE_analysis.ipynb
-├── src/                           # Optional helper modules
-├── figures/                       # Exported plots (Volcano, PCA, Heatmap, MA)
-├── data/                          # Generated DEG tables and processed files
-├── requirements.txt               # Python dependencies
-└── README.md                      # Project documentation
+Platform: Affymetrix microarray
+
+Data type: Pre-normalized gene expression data
+
+All data used in this project are publicly available.
+
+🔬 Analysis Workflow
+
+The analysis pipeline includes the following steps:
+
+Retrieval of expression data using GEOparse
+
+Probe-to-gene mapping using platform annotations
+
+Construction of gene-level expression matrices
+
+Low-variance gene filtering to reduce noise
+
+Differential expression analysis using Welch’s t-test
+
+Multiple testing correction using Benjamini–Hochberg FDR
+
+Exploratory data analysis (PCA, heatmap, volcano plot, MA plot)
+
+Functional pathway enrichment analysis (KEGG)
+
+📊 Key Results
+
+Identification of 159 significantly differentially expressed genes
+
+Clear transcriptomic separation between tumor and normal samples observed in PCA
+
+Consistent expression patterns across top DEGs in hierarchical clustering
+
+Enrichment of cancer-associated pathways, particularly those related to cell cycle regulation
+
+🛠 Tools & Libraries
+
+Python
+
+Pandas, NumPy
+
+GEOparse
+
+gseapy
+
+Matplotlib / Seaborn
+
+📁 Repository Structure
+.
+├── analysis_script.py
+├── README.md
+└── results/
+    └── figures/
 
 
-You may customize or expand this structure for your own workflow.
+(File names may vary depending on implementation)
 
-🚀 Getting Started
+📚 Purpose & Scope
 
-1. Clone the repository
+This project was conducted as an academic learning and research exercise to strengthen skills in:
 
-git clone https://github.com/NSCLC_GSE19188_DE_analysis.git
+transcriptomic data analysis
 
-cd NSCLC_GSE19188_DE_analysis
+statistical evaluation of high-dimensional biological data
 
-2. Create and activate a virtual environment
+reproducible bioinformatics workflows
 
-Mac/Linux:
-
-python -m venv venv
-
-source venv/bin/activate
+The findings are intended for educational and research purposes and do not represent clinical or therapeutic validation.
 
 
-Windows:
 
-venv\Scripts\activate
-
-3. Install dependencies
-
-pip install -r requirements.txt
-
-4. Open the analysis notebook
-
-You can use Jupyter Notebook, VS Code, or Google Colab:
-
-notebooks/GSE19188_NSCLC_DE_analysis.ipynb
-
-▶️ How to Run the Pipeline
-
-Once the notebook is open, simply run all cells from top to bottom.
-
-The notebook will:
-
-Download and preprocess GSE19188
-
-Define tumor vs. normal sample groups
-
-Perform Welch’s t-test to identify DEGs
-
-Save results into:
-
-figures/ (plots)
-
-data/ (DEG lists, normalized expression tables)
-
-🧠 Methods (Plain Language)
-
-Expression values are log₂-transformed for normalization.
-
-Low-variance probes are removed to focus on informative genes.
-
-GEO metadata is used to label samples as tumor or normal.
-
-For each gene, the workflow computes:
-
-Log₂ fold change
-
-Welch’s t-test p-value
-
-Plots such as volcano, heatmap, PCA, and MA help confirm:
-
-Clear separation of tumor vs. normal groups
-
-Proper normalization
-
-Visualization of major gene expression changes
-
-💡 Why This Project is Useful
-
-A clean starting point for NSCLC or GEO-based gene expression projects
-
-A teaching example for differential expression workflows in Python
-
-A reusable template you can extend with:
-
-Pathway enrichment
-
-Survival analysis
-
-Machine-learning models
-
-Additional GEO datasets
-
-🙏 Acknowledgements
-
-Dataset:
-GSE19188 – “Expression data for early-stage NSCLC” (NCBI GEO)
-
-Tools Used:
-Python, GEOparse, NumPy, Pandas, SciPy, scikit-learn, Matplotlib, Seaborn
